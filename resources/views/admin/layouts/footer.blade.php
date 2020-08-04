@@ -14,8 +14,12 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{ asset('Design/admin/plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- DataTables -->
+<script src="{{ asset('Design/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('Design/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('Design/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('Design/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('Design/admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -48,5 +52,8 @@
 <script src="{{ asset('Design/admin/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('Design/admin/dist/js/demo.js') }}"></script>
+
+@stack('js')
+@stack('css')
 </body>
 </html>

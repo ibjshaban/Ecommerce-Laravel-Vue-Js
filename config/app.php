@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // yajra database
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
     ],
 
     /*
