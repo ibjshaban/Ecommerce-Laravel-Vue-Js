@@ -7,4 +7,7 @@ return [
     'the_link_reset_sent' => 'Rest Link is sent',
     'admin' => 'Admin Account',
     'dashboard' => 'Dashboard',
+    'create_admin' => 'Add New Admin',
+    'ex_excel' => 'Export Excel',
+    'ex_csv' => 'Export CSV',
 ];
