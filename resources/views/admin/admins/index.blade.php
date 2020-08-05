@@ -8,7 +8,7 @@
         <div class="box-body">
             {!! $dataTable->table([
             'class'=>'dataTable table table-striped table-hover  table-bordered'
-            ]) !!}
+            ], true) !!}
         </div>
         <!-- /.box-body -->
     </div>

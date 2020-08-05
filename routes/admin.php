@@ -16,4 +16,5 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
 
         Route::any('logout','AdminAuthController@logout')->name('logout');
     });
+
 });
