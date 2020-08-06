@@ -29,4 +29,10 @@ return [
     'sPrevious' => 'Previous',
     'sSortAscending' => 'Sort Ascending',
     'sSortDescending' => 'Sort Descending',
+    'delete'              => 'Delete',
+    'edit'              => 'Edit',
+    'name'              => 'Name',
+    'email'              => 'Email',
+    'created_at'              => 'Created At',
+    'updated_at'              => 'Updated At',
 ];

@@ -123,17 +123,17 @@ class AdminDatatable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('name'),
-            Column::make('email'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('name')->title(trans('admin.name')),
+            Column::make('email')->title(trans('admin.email')),
+            Column::make('created_at')->title(trans('admin.created_at')),
+            Column::make('updated_at')->title(trans('admin.updated_at')),
             Column::computed('edit')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->name('edit')
                 ->data('edit')
-                ->title('Edit')
+                ->title(trans('admin.edit'))
                 ->addClass('text-center'),
             Column::computed('delete')
                 ->exportable(false)
@@ -141,7 +141,7 @@ class AdminDatatable extends DataTable
                 ->width(60)
                 ->name('delete')
                 ->data('delete')
-                ->title('Delete')
+                ->title(trans('admin.delete'))
                 ->addClass('text-center'),
         ];
     }
