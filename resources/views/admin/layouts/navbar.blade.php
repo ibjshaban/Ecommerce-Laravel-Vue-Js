@@ -159,7 +159,7 @@
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             {{ trans('admin.dashboard') }}
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="left fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -194,7 +194,7 @@
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             {{ trans('admin.admin') }}
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="left fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">

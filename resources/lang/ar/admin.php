@@ -33,6 +33,6 @@ return [
     'edit'              => 'تعديل',
     'name'              => 'الاسم',
     'email'              => 'الايميل',
-    'created_at'              => 'تاريخ الانشاء',
-    'updated_at'              => 'تاريخ التعديل',
+    'created_at'              => 'أنشئ في',
+    'updated_at'              => 'محدث في',
 ];
