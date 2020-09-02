@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use App\DataTables\AdminDatatable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create', ['title' => trans('admin.create_admin')]);
     }
 
     /**
@@ -36,7 +37,21 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate(request(),
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:admins',
+                'password' => 'required|min:6'
+            ],[],[
+                'name' => trans('admin.name'),
+                'email' => trans('admin.email'),
+                'password' => trans('admin.password')
+            ]
+        );
+        $data['password'] = bcrypt(request('password'));
+        Admin::create($data);
+        session()->flash('success', trans('admin.record_added'));
+        return redirect(aurl('admin'));
     }
 
     /**
