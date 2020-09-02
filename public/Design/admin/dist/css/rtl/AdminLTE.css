@@ -32,6 +32,9 @@ body {
   position: static;
   overflow: hidden;
 }
+.wrapper .content-wrapper{
+  padding-right: 2%;
+}
 .wrapper:before,
 .wrapper:after {
   content: " ";

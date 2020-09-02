@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="{{ asset('Design/admin/dist/css/rtl/rtl.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
         <style type="text/css">
-            html,body{
+            html,body,.alert{
                 font-family: 'Cairo', sans-serif;
             }
         </style>

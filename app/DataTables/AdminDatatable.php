@@ -20,9 +20,12 @@ class AdminDatatable extends DataTable
             ->eloquent($query)
             //->addColumn('action', 'admindatatable.action')
             ->addColumn('edit', 'admin.admins.btn.edit')
+            ->addColumn('checkbox', 'admin.admins.btn.checkbox')
             ->addColumn('delete', 'admin.admins.btn.delete')
             ->rawColumns([
-                'edit', 'delete'
+                'edit',
+                'delete',
+                'checkbox'
             ]);
     }
 
@@ -64,17 +67,19 @@ class AdminDatatable extends DataTable
                 'buttons' => [
                     [
                         'text' => '<i class="fa fa-plus"></i> ' . trans('admin.create_admin'),
-                        'className' => 'btn btn-info'
-
+                        'className' => 'btn btn-info',
                     ],
                     ['extend' => 'print', 'className' => 'btn btn-primary', 'text' => '<i class="fa fa-print"></i>'],
                     ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_csv')],
                     ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_excel')],
                     ['extend' => 'reload', 'className' => 'btn btn-default', 'text' => '<i class="fas fa-sync-alt"></i>'],
-
+                    [
+                        'text' => '<i class="fa fa-trash"></i>',
+                        'className' => 'btn btn-danger delBtn',
+                    ],
                 ],
                 'initComplete' => " function () {
-		            this.api().columns([0,1,2,3,4]).every(function () {
+		            this.api().columns([2,3,4]).every(function () {
 		                var column = this;
 		                var input = document.createElement(\"input\");
 		                $(input).appendTo($(column.footer()).empty()).css(\"width\", \"90%\")
@@ -98,7 +103,13 @@ class AdminDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
+            Column::computed('checkbox')
+                ->exportable(false)
+                ->printable(false)
+                ->name('checkbox')
+                ->data('checkbox')
+                ->title('<input type="checkbox" class="check_all" onclick="check_all()"/>'),
+            Column::make('id')->title('#'),
             Column::make('name')->title(trans('admin.name')),
             Column::make('email')->title(trans('admin.email')),
             Column::make('created_at')->title(trans('admin.created_at')),
