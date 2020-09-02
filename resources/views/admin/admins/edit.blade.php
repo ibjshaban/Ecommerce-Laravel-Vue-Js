@@ -8,20 +8,20 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            {!! Form::open(['route' => ['admin.store']]) !!}
+            {!! Form::open(['route' => ['admin.update', $admin->id],'method'=>'put' ]) !!}
             <div class="form-group">
                 {!! Form::label('name',trans('admin.name')) !!}
-                {!! Form::text('name',old('name'),['class'=>'form-control']) !!}
+                {!! Form::text('name',$admin->name,['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('email',trans('admin.email')) !!}
-                {!! Form::email('email',old('email'),['class'=>'form-control']) !!}
+                {!! Form::email('email',$admin->email,['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('password',trans('admin.password')) !!}
                 {!! Form::password('password',['class'=>'form-control']) !!}
             </div>
-            {!! Form::submit(trans('admin.create_admin'),['class'=>'btn btn-primary']) !!}
+            {!! Form::submit(trans('admin.save'),['class'=>'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
         <!-- /.box-body -->

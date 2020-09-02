@@ -10,6 +10,7 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
     Route::post('reset/password/{token}','AdminAuthController@reset_password_final');
     Route::group(['middleware' => 'admin:admin'], function () {
         Route::resource('admin', 'AdminController');
+        Route::delete('admin/destroy/all','AdminController@multi_delete');
         Route::get('/', function () {
             return view('admin.home');
         });
