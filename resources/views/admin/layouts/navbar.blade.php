@@ -189,7 +189,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview {{ active_menu('admin')[0] }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
@@ -197,11 +197,52 @@
                             <i class="left fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <ul class="nav nav-treeview {{ active_menu('admin')[1] }}">
                         <li class="nav-item active">
                             <a href="{{ aurl('admin') }}" class="nav-link">
                                 <i class="fa fa-users pull-right nav-icon"></i>
                                 <p>{{ trans('admin.admin') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('logout') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ active_menu('users')[0] }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-users"></i>
+                        <p>
+                            {{ trans('admin.users') }}
+                            <i class="left fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview {{ active_menu('users')[1] }}">
+                        <li class="nav-item active">
+                            <a href="{{ aurl('users') }}" class="nav-link">
+                                <i class="fa fa-users pull-right nav-icon"></i>
+                                <p>{{ trans('admin.users') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ aurl('users') }}?level=user" class="nav-link">
+                                <i class="fa fa-users pull-right nav-icon"></i>
+                                <p>{{ trans('admin.user') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ aurl('users') }}?level=vendor" class="nav-link">
+                                <i class="fa fa-users pull-right nav-icon"></i>
+                                <p>{{ trans('admin.vendor') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ aurl('users') }}?level=company" class="nav-link">
+                                <i class="fa fa-users pull-right nav-icon"></i>
+                                <p>{{ trans('admin.company') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
