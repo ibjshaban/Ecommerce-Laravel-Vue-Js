@@ -6,6 +6,13 @@ if (!function_exists('aurl')) {
     }
 }
 
+if (!function_exists('setting')) {
+    function setting()
+    {
+        return \App\Setting::orderBy('id', 'desc')->first();
+    }
+}
+
 if (!function_exists('admin')) {
     function admin()
     {
@@ -30,7 +37,7 @@ if (!function_exists('lang')) {
         if (session()->has('lang')) {
             return session('lang');
         } else {
-            return 'en';
+            return setting()->main_lang; // set language from setting page
         }
     }
 }

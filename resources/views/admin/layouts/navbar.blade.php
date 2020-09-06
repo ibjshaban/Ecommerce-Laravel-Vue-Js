@@ -156,7 +156,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-bars"></i>
                         <p>
                             {{ trans('admin.dashboard') }}
                             <i class="left fas fa-angle-left"></i>
@@ -164,27 +164,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
+                            <a href="{{ route('admin.index') }}" class="nav-link active">
+                                <i class="fas fa-cog nav-icon"></i>
+                                <p>{{ trans('admin.dashboard') }}</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Logout</p>
+                            <a href="{{ aurl('settings') }}" class="nav-link">
+                                <i class="fas fa-cog nav-icon"></i>
+                                <p>{{ trans('admin.settings') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -202,12 +191,6 @@
                             <a href="{{ aurl('admin') }}" class="nav-link">
                                 <i class="fa fa-users pull-right nav-icon"></i>
                                 <p>{{ trans('admin.admin') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Logout</p>
                             </a>
                         </li>
                     </ul>
@@ -244,14 +227,14 @@
                                 <i class="fa fa-users pull-right nav-icon"></i>
                                 <p>{{ trans('admin.company') }}</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Logout</p>
-                            </a>
-                        </li>
                     </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <p>Logout</p>
+                    </a>
                 </li>
 
 
