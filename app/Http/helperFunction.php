@@ -13,6 +13,13 @@ if (!function_exists('setting')) {
     }
 }
 
+if (!function_exists('upload')) {
+    function upload()
+    {
+        return new  \App\Http\Controllers\UploadController;
+    }
+}
+
 if (!function_exists('admin')) {
     function admin()
     {
@@ -23,9 +30,9 @@ if (!function_exists('admin')) {
 if (!function_exists('active_menu')) {
     function active_menu($link)
     {
-        if (preg_match('/'.$link.'/i', Request::segment(2))){
+        if (preg_match('/' . $link . '/i', Request::segment(2))) {
             return ['menu-open', 'display:block'];
-        }else{
+        } else {
             return ['', ''];
         }
     }
@@ -88,3 +95,16 @@ if (!function_exists('datatable_lang')) {
         ];
     }
 }
+
+//-----Validate Helper Function-------------//
+if (!function_exists('validate_image')) {
+    function validate_image($text = null)
+    {
+        if ($text === null) {
+            return 'image|mimes:jpg,jpeg,png,gif,bmp';
+        } else {
+            return 'image|mimes:'.$text;
+        }
+    }
+}
+//-----Validate Helper Function-------------//

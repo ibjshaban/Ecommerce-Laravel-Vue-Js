@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use League\Flysystem\Config;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        \Config::set('filesystems.disks.public.url', url('storage'));
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
