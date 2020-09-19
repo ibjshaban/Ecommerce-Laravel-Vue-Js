@@ -17,7 +17,16 @@ class SettingController extends Controller
     {
         $data = $this->validate(request(), [
             'logo' => validate_image(),
-            'icon' => validate_image()], [],
+            'icon' => validate_image(),
+            'status' => '',
+            'description' => '',
+            'keywords' => '',
+            'main_lang' => '',
+            'message_maintenance' => '',
+//            'email' => '',
+            'sitename_en' => '',
+            'sitename_ar' => '',
+        ], [],
             [
                 'logo' => trans('admin.logo'),
                 'icon' => trans('admin.icon')
