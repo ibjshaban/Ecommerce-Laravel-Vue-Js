@@ -14,6 +14,10 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
 
         Route::resource('users', 'UsersController');
         Route::delete('users/destroy/all','UsersController@multi_delete');
+
+        Route::resource('countries', 'CountryController');
+        Route::delete('countries/destroy/all','CountryController@multi_delete');
+
         Route::get('/', function () {
             return view('admin.home');
         });
