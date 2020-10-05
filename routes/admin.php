@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('states', 'StateController');
         Route::delete('states/destroy/all', 'StateController@multi_delete');
 
+        Route::resource('trademarks', 'TradeMarksController');
+        Route::delete('trademarks/destroy/all', 'TradeMarksController@multi_delete');
+
         Route::resource('departments', 'DepartmentController');
 
         Route::get('/', function () {
