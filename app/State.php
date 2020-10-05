@@ -14,10 +14,13 @@ class State extends Model
         'city_id',
     ];
 
-    public function country_id(){
+    public function country_id()
+    {
         return $this->hasOne(Country::class, 'id', 'country_id');
     }
-    public function city_id(){
+
+    public function city_id()
+    {
         return $this->hasOne(City::class, 'id', 'city_id');
     }
 }

@@ -17,7 +17,7 @@ class CountryController extends Controller
      */
     public function index(CountryDatatable $country)
     {
-        return $country->render('admin.countries.index', ['title' => 'Admin control']);
+        return $country->render('admin.countries.index', ['title' => trans('admin.countries')]);
     }
 
     /**

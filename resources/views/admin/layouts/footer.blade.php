@@ -56,6 +56,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('Design/admin/dist/js/demo.js') }}"></script>
 <script src="{{ asset('Design/admin/dist/js/myJavascript.js') }}"></script>
+<script src="{{ asset('Design/admin/jstree/jstree.js') }}"></script>
+<script src="{{ asset('Design/admin/jstree/jstree.wholerow.js') }}"></script>
+<script src="{{ asset('Design/admin/jstree/jstree.checkbox.js') }}"></script>
 
 @stack('js')
 @stack('css')

@@ -43,8 +43,9 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
-          href="{{ asset('Design/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    href="{{ asset('Design/admin/jstree/themes/default/style.css') }}">
     <!-- jQuery -->
+    <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <script src="{{ asset('Design/admin/plugins/jquery/jquery.min.js') }}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

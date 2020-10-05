@@ -17,7 +17,7 @@ class CityController extends Controller
      */
     public function index(CityDatatable $city)
     {
-        return $city->render('admin.cities.index', ['title' => 'Admin control']);
+        return $city->render('admin.cities.index', ['title' => trans('admin.cities')]);
     }
 
     /**

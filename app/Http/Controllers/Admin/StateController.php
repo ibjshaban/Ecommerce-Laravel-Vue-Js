@@ -18,7 +18,7 @@ class StateController extends Controller
      */
     public function index(StateDatatable $state)
     {
-        return $state->render('admin.states.index', ['title' => 'Admin control']);
+        return $state->render('admin.states.index', ['title' => trans('admin.states')]);
     }
 
     /**

@@ -16,7 +16,7 @@ class AdminController extends Controller
      */
     public function index(AdminDatatable $admin)
     {
-        return $admin->render('admin.admins.index', ['title' => 'Admin control']);
+        return $admin->render('admin.admins.index', ['title' => trans('admin.adminPanel')]);
     }
 
     /**
