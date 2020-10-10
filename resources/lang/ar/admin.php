@@ -90,5 +90,15 @@ return [
     'name_ar'                      => 'الاسم بالعربي',
     'create_trademarks'            => 'إضافة علامة تجارية',
     'trade_icon'                   => 'شعار العلامة التجارية',
+    'manufacturers'                => 'المصنعين',
+    'mobile'                       => 'الجوال',
+    'facebook'                     => 'فيسبوك',
+    'twitter'                      => 'تويتر',
+    'website'                      => 'الموقع الرسمى',
+    'contact_name'                 => 'المسؤل عن المصنع',
+    'lat'                          => '',
+    'lng'                          => '',
+    'manufacturers_icon'           => 'شعار المصنع',
+    'address'                      => 'العنوان',
 
 ];
