@@ -374,6 +374,30 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview {{ active_menu('shipping')[0] }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-list"></i>
+                        <p>
+                            {{ trans('admin.shipping') }}
+                            <i class="left fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview {{ active_menu('shipping')[1] }}">
+                        <li class="nav-item active">
+                            <a href="{{ aurl('shipping') }}" class="nav-link">
+                                <i class="fa fa-flag pull-right nav-icon"></i>
+                                <p>{{ trans('admin.shipping') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ aurl('shipping/create') }}" class="nav-link">
+                                <i class="fa fa-plus pull-right nav-icon"></i>
+                                <p>{{ trans('admin.add') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">

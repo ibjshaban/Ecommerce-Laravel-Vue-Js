@@ -100,5 +100,12 @@ return [
     'lng'                          => '',
     'manufacturers_icon'           => 'شعار المصنع',
     'address'                      => 'العنوان',
+    'shipping'                     => 'شركات الشحن',
+    'ship_icon'                    => 'شعار الشركة',
+    'owner_id'                     => 'المالك',
+    'malls'                        => 'الممجمعات التجارية',
+    'mall_icon'                    => 'شعار المول',
+    'colors'                       => 'الالوان',
+    'color'                        => 'اللون',
 
 ];
