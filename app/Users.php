@@ -10,7 +10,7 @@ class Users extends Authenticatable
     use Notifiable;
     protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','level',
     ];
 
     /**

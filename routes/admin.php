@@ -35,6 +35,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('departments', 'DepartmentController');
 
+        Route::resource('malls', 'MallsController');
+        Route::delete('malls/destroy/all', 'MallsController@multi_delete');
+
         Route::get('/', function () {
             return view('admin.home');
         });

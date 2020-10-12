@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Users;
 use App\DataTables\UsersDatatable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class UsersController extends Controller
             ]
         );
         $data['password'] = bcrypt(request('password'));
-        User::create($data);
+        Users::create($data);
         session()->flash('success', trans('admin.record_added'));
         return redirect(aurl('users'));
     }
@@ -75,7 +75,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = Users::find($id);
         $title = trans('admin.edit');
         return view('admin.users.edit', compact('user', 'title'));
     }
@@ -105,7 +105,7 @@ class UsersController extends Controller
         if (request()->has('password')) {
             $data['password'] = bcrypt(request('password'));
         }
-        User::where('id', $id)->update($data);
+        Users::where('id', $id)->update($data);
         session()->flash('success', trans('admin.updated_record'));
         return redirect(aurl('users'));
     }
@@ -118,16 +118,16 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        Users::find($id)->delete();
         session()->flash('success', trans('admin.deleted_record'));
         return redirect(aurl('users'));
     }
 
     public function multi_delete(){
         if (is_array(request('item'))){
-            User::destroy(\request('item'));
+            Users::destroy(\request('item'));
         }else{
-            User::find(\request('item'))->delete();
+            Users::find(\request('item'))->delete();
         }
         session()->flash('success', trans('admin.deleted_record'));
         return redirect(aurl('users'));

@@ -16,7 +16,7 @@ class Shipping extends Model {
     ];
 
     public function user_id() {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne(Users::Class, 'id', 'user_id');
     }
 
 }

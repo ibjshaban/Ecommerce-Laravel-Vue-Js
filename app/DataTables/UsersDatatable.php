@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Users;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -39,7 +39,7 @@ class UsersDatatable extends DataTable
      */
     public function query()
     {
-        return User::query()->where(function ($query){
+        return Users::query()->where(function ($query){
             if (request()->has('level')){
                 return $query->where('level', request('level'));
             }
