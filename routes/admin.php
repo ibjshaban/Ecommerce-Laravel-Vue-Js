@@ -38,6 +38,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('malls', 'MallsController');
         Route::delete('malls/destroy/all', 'MallsController@multi_delete');
 
+        Route::resource('colors', 'ColorsController');
+        Route::delete('colors/destroy/all', 'ColorsController@multi_delete');
+
         Route::get('/', function () {
             return view('admin.home');
         });
