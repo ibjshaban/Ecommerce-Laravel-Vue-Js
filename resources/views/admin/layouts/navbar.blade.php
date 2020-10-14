@@ -446,6 +446,30 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview {{ active_menu('sizes')[0] }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-paint-brush"></i>
+                        <p>
+                            {{ trans('admin.sizes') }}
+                            <i class="left fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview {{ active_menu('sizes')[1] }}">
+                        <li class="nav-item active">
+                            <a href="{{ aurl('sizes') }}" class="nav-link">
+                                <i class="fa fa-paint-brush pull-right nav-icon"></i>
+                                <p>{{ trans('admin.sizes') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ aurl('sizes/create') }}" class="nav-link">
+                                <i class="fa fa-plus pull-right nav-icon"></i>
+                                <p>{{ trans('admin.add') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
