@@ -42,9 +42,9 @@
 <script src="{{ asset('Design/admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('Design/admin/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('Design/admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('Design/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script
+    src="{{ asset('Design/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
 <script src="{{ asset('Design/admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
@@ -59,6 +59,13 @@
 <script src="{{ asset('Design/admin/jstree/jstree.js') }}"></script>
 <script src="{{ asset('Design/admin/jstree/jstree.wholerow.js') }}"></script>
 <script src="{{ asset('Design/admin/jstree/jstree.checkbox.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"
+        integrity="sha512-rdmfDN1kbYc+OJTJsY9LCoXGUjuXaMwrUwBGdLmGs4g9MwdlgnFdfZPRMlFIOB9xTTyauBfAOV/R4BQDwqxg9g=="
+        crossorigin="anonymous"></script>
 
 @stack('js')
 @stack('css')

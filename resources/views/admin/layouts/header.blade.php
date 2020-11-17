@@ -26,11 +26,11 @@
         <link rel="stylesheet" href="{{ asset('Design/admin/dist/css/rtl/rtl.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
         <style type="text/css">
-            html,body,.alert{
+            html, body, .alert {
                 font-family: 'Cairo', sans-serif;
             }
         </style>
-    @endif
+@endif
 <!-- overlayScrollbars -->
     <link rel="stylesheet" href=" {{ asset('Design/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
@@ -43,9 +43,13 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
-    href="{{ asset('Design/admin/jstree/themes/default/style.css') }}">
+          href="{{ asset('Design/admin/jstree/themes/default/style.css') }}">
     <!-- jQuery -->
     <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+          crossorigin="anonymous"/>
     <script src="{{ asset('Design/admin/plugins/jquery/jquery.min.js') }}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

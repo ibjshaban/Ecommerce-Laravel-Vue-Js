@@ -47,6 +47,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('sizes', 'SizesController');
         Route::delete('sizes/destroy/all', 'SizesController@multi_delete');
 
+        Route::resource('products', 'ProductsController');
+        Route::delete('products/destroy/all', 'ProductsController@multi_delete');
+        Route::post('upload/image/{pid}', 'ProductsController@upload_file');
+        Route::post('delete/image/', 'ProductsController@delete_file');
+
+
         Route::get('/', function () {
             return view('admin.home');
         });
