@@ -61,14 +61,14 @@
             });
 
 
-            /*$('#mainphoto').dropzone({
-                url: "{{ aurl('upload/image/'.$product->id) }}",
+            $('#mainphoto').dropzone({
+                url: "{{ aurl('update/image/'.$product->id) }}",
                 paramName: 'file',
                 autoDiscover: false,
                 uploadMultiple: false,
                 maxFiles: 1,
                 maxFilessize: 3, // MB
-                acceptedFiles: 'image/!*',
+                acceptedFiles: 'image/*',
                 dictDefaultMessage: '{{ trans('admin.mainphoto') }}',
                 dictRemoveFile: '{{ trans('admin.delete') }}',
                 params: {
@@ -108,7 +108,7 @@
 
 
                 }
-            });*/
+            });
 
         });
     </script>
