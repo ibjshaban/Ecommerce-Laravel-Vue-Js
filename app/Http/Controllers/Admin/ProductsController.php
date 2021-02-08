@@ -30,27 +30,27 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    	public function prepare_weight_size() {
-            if (request()->ajax() and request()->has('dep_id')) {
-                //$dep_list = array_diff(explode(',', get_parent(request('dep_id'))), [request('dep_id')]);
+    public function prepare_weight_size() {
+        if (request()->ajax() and request()->has('dep_id')) {
+            $dep_list = array_diff(explode(',', get_parent(request('dep_id'))), [request('dep_id')]);
 
-                $sizes = Size::where('is_public', 'yes')
-                    //->whereIn('department_id', $dep_list)
-                    ->Where('department_id', request('dep_id'))
-                    ->pluck('name_'.session('lang'), 'id');
-                //$size_2 = Size::;
-                //$sizes  = array_merge(json_decode($size_1, true), json_decode($size_2, true));
+            $sizes = Size::where('is_public', 'yes')
+                ->whereIn('department_id', $dep_list)
+                ->orWhere('department_id', request('dep_id'))
+                ->pluck('name_'.session('lang'), 'id');
+            //$size_2 = Size::;
+            //$sizes  = array_merge(json_decode($size_1, true), json_decode($size_2, true));
 
-                $weights = Weight::pluck('name_'.session('lang'), 'id');
-                return view('admin.products.ajax.size_weight', [
-                        'sizes'   => $sizes,
-                        'weights' => $weights,
-                        'product' => Product::find(request('product_id')),
-                    ])->render();
-            } else {
-                return 'برجاء اختيار قسم';
-            }
+            $weights = Weight::pluck('name_'.session('lang'), 'id');
+            return view('admin.products.ajax.size_weight', [
+                'sizes'   => $sizes,
+                'weights' => $weights,
+                'product' => Product::find(request('product_id')),
+            ])->render();
+        } else {
+            return 'برجاء اختيار قسم';
         }
+    }
 
     public function create()
     {
