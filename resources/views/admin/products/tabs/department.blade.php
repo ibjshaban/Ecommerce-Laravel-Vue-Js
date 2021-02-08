@@ -38,7 +38,7 @@ $(document).ready(function(){
       success: function(data)
       {
         $('.size_weight').html(data);
-        $('.info_data').removeClass('hidden');
+        $('.info_data').removeClass('d-none');
       }
     });
 });
