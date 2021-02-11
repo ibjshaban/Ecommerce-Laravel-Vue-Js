@@ -30,10 +30,10 @@
     <div class="size_weight">
         <center><h1>برجاء قم باختيار قسم</h1></center>
     </div>
-<!--    <div class="info_data d-none">
+    <div class="info_data d-none">
         <div class="form-group  col-md-4 col-lg-4 col-sm-4 col-xs-12">
-            {{--{!! Form::label('color_id',trans('admin.color_id')) !!}
-            {!! Form::select('color_id',App\Color::pluck('name_'.lang(),'id'),$product->color_id,['class'=>'form-control','placeholder'=>trans('admin.color_id')]) !!}--}}
+            {!! Form::label('color_id',trans('admin.color_id')) !!}
+            {!! Form::select('color_id',App\Color::pluck('name_'.lang(),'id'),$product->color_id,['class'=>'form-control','placeholder'=>trans('admin.color_id')]) !!}
         </div>
         <div class="form-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
             {{--{!! Form::label('trade_id',trans('admin.trade_id')) !!}
@@ -49,5 +49,5 @@
 
         </div>
         <div class="clearfix"></div>
-    </div>-->
+    </div>
 </div>

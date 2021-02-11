@@ -39,6 +39,7 @@ $(document).ready(function(){
       {
         $('.size_weight').html(data);
         $('.info_data').removeClass('d-none');
+        //$('.color_data').removeClass('d-none');
       }
     });
 });
