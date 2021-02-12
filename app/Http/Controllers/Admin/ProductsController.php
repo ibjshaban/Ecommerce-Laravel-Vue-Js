@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
+use App\OtherData;
 use App\Product;
 use App\Size;
 use App\Weight;
@@ -231,9 +232,9 @@ class ProductsController extends Controller
                     'mall_id' => $mall,
                 ]);
             }
-        }
+        }*/
 
-        if (request()->has('related')) {
+        /*if (request()->has('related')) {
             RelatedProudct::where('product_id', $id)->delete();
             foreach (request('related') as $related) {
                 RelatedProudct::create([
@@ -241,7 +242,7 @@ class ProductsController extends Controller
                     'related_product' => $related,
                 ]);
             }
-        }
+        }*/
         if (request()->has('input_value') && request()->has('input_key')) {
             $i = 0;
             $other_data = '';
@@ -256,7 +257,7 @@ class ProductsController extends Controller
                 $i++;
             }
             $data['other_data'] = rtrim($other_data, '|');
-        }*/
+        }
         Product::where('id', $id)->update($data);
         return response(['status' => true, 'message' => trans('admin.updated_record')], 200);
 

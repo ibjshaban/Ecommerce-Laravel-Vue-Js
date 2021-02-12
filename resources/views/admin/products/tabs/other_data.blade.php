@@ -32,21 +32,21 @@ $(document).on('click','.remove_input',function(){
 <div id="other_data" class="tab-pane fade">
 	<h3>{{ trans('admin.other_data') }}</h3>
 	<div class="div_inputs col-md-12 col-lg-12 col-sm-12">
-{{--		@foreach($product->other_data()->get() as $other)--}}
+		@foreach($product->other_data()->get() as $other)
 		<div>
 			<div class="col-md-6">
 				{!! Form::label('input_key',trans('admin.input_key')) !!}
-				{!! Form::text('input_key[]',''/*$other->data_key*/,['class'=>'form-control']) !!}
+				{!! Form::text('input_key[]',$other->data_key,['class'=>'form-control']) !!}
 			</div>
 			<div class="col-md-6">
 				{!! Form::label('input_value',trans('admin.input_value')) !!}
-				{!! Form::text('input_value[]',''/*$other->data_value*/,['class'=>'form-control']) !!}
+				{!! Form::text('input_value[]',$other->data_value,['class'=>'form-control']) !!}
 			</div>
 			<div class="clearfix"></div>
 			<br>
 			<a href="#" class="remove_input btn btn-danger"><i class="fa fa-trash"></i></a>
 		</div>
-{{--		@endforeach--}}
+		@endforeach
 
 	</div>
 	<div class="clearfix"></div>

@@ -32,20 +32,20 @@ class Product extends Model {
 	];
 
 	/*public function related() {
-		return $this->hasMany(\App\Model\RelatedProudct::class , 'product_id', 'id');
-	}
+		return $this->hasMany(\App\RelatedProudct::class , 'product_id', 'id');
+	}*/
 
 	public function mall_product() {
-		return $this->hasMany(\App\Model\MallProduct::class , 'product_id', 'id');
+		return $this->hasMany(\App\Mall::class , 'product_id', 'id');
 	}
 
 	public function other_data() {
-		return $this->hasMany(\App\Model\OtherData::class , 'product_id', 'id');
+		return $this->hasMany(\App\OtherData::class , 'product_id', 'id');
 	}
 
 	public function malls() {
-		return $this->hasMany(\App\Model\MallProduct::class , 'product_id', 'id');
-	}*/
+		return $this->hasMany(\App\Mall::class , 'product_id', 'id');
+	}
 
 	public function files() {
 		return $this->hasMany('App\File', 'relation_id', 'id')->where('file_type', 'product');
