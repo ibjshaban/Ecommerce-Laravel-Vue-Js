@@ -27,7 +27,14 @@ if (!function_exists('get_parent')) {
         // return $list_department;
     }
 }
-
+/////// Scan Mall Id Exists /////
+if (!function_exists('check_mall')) {
+    function check_mall($id, $pid)
+    {
+        return \App\MallProduct::where('product_id', $pid)->where('mall_id', $id)->count() > 0 ? true : false;
+    }
+}
+/////// Scan Mall Id Exists /////
 
 if (!function_exists('load_dep')) {
     function load_dep($select = null, $dep_hide = null)

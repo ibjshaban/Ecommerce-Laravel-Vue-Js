@@ -2,19 +2,19 @@
 //dd($mall);
 ?>
 @push('js')
-   {{-- <script type="text/javascript">
-        $(document).ready(function() {
+    <script type="text/javascript">
+        $(document).ready(function () {
             var dataSelect = [
                     @foreach(App\Country::all() as $country)
                 {
-                    "text":"{{ $country->{'country_name_'.lang()} }}",
-                    "children":[
+                    "text": "{{ $country->{'country_name_'.lang()} }}",
+                    "children": [
                             @foreach($country->malls()->get() as $mall)
                         {
                             "id":{{ $mall->id }},
-                            "text":"{{ $mall->{'name_'.lang()} }}",
+                            "text": "{{ $mall->{'name_'.lang()} }}",
                             @if(check_mall($mall->id,$product->id))
-                            "selected":true
+                            "selected": true
                             @endif
                         },
                         @endforeach
@@ -23,10 +23,10 @@
                 @endforeach
             ];
 
-            $('.mall_select2').select2({data:dataSelect});
+            $('.mall_select2').select2({data: dataSelect});
 
         });
-    </script>--}}
+    </script>
 @endpush
 
 <div id="product_size_weight" class="tab-pane fade">

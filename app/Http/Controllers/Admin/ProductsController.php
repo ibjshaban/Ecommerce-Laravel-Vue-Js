@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
+use App\MallProduct;
 use App\OtherData;
 use App\Product;
 use App\Size;
@@ -224,7 +225,7 @@ class ProductsController extends Controller
                 'reason' => trans('admin.reason'),
             ]);
 
-        /*if (request()->has('mall')) {
+        if (request()->has('mall')) {
             MallProduct::where('product_id', $id)->delete();
             foreach (request('mall') as $mall) {
                 MallProduct::create([
@@ -232,7 +233,7 @@ class ProductsController extends Controller
                     'mall_id' => $mall,
                 ]);
             }
-        }*/
+        }
 
         /*if (request()->has('related')) {
             RelatedProudct::where('product_id', $id)->delete();

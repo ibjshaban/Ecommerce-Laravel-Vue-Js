@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
           href="{{ asset('Design/admin/jstree/themes/default/style.css') }}">
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- jQuery -->
     <link rel="stylesheet" href="{{ asset('Design/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
