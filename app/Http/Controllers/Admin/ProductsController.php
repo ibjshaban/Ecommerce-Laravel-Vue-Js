@@ -30,20 +30,21 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function prepare_weight_size() {
+    public function prepare_weight_size()
+    {
         if (request()->ajax() and request()->has('dep_id')) {
             $dep_list = array_diff(explode(',', get_parent(request('dep_id'))), [request('dep_id')]);
 
             $sizes = Size::where('is_public', 'yes')
                 ->whereIn('department_id', $dep_list)
                 ->orWhere('department_id', request('dep_id'))
-                ->pluck('name_'.session('lang'), 'id');
+                ->pluck('name_' . session('lang'), 'id');
             //$size_2 = Size::;
             //$sizes  = array_merge(json_decode($size_1, true), json_decode($size_2, true));
 
-            $weights = Weight::pluck('name_'.session('lang'), 'id');
+            $weights = Weight::pluck('name_' . session('lang'), 'id');
             return view('admin.products.ajax.size_weight', [
-                'sizes'   => $sizes,
+                'sizes' => $sizes,
                 'weights' => $weights,
                 'product' => Product::find(request('product_id')),
             ])->render();
@@ -70,11 +71,12 @@ class ProductsController extends Controller
         return response(['status' => true], 200);
     }
 
-    public function update_product_image($id) {
+    public function update_product_image($id)
+    {
         $product = Product::where('id', $id)->update([
-            'photo'         => upload()->upload([
-                'file'        => 'file',
-                'path'        => 'products/'.$id,
+            'photo' => upload()->upload([
+                'file' => 'file',
+                'path' => 'products/' . $id,
                 'upload_type' => 'single',
                 'delete_file' => '',
             ]),
@@ -157,7 +159,7 @@ class ProductsController extends Controller
         if (request()->hasFile('file')) {
             $fid = upload()->upload([
                 'file' => 'file',
-                'path' => 'products/'. $id,
+                'path' => 'products/' . $id,
                 'upload_type' => 'files',
                 'file_type' => 'product',
                 'relation_id' => $id,
@@ -176,87 +178,87 @@ class ProductsController extends Controller
     public function update($id)
     {
 
-        /*$data = $this->validate(request(),
+        $data = $this->validate(request(),
             [
-                'title'          => 'required',
-                'content'        => 'required',
-                'department_id'  => 'required|numeric',
-                'trade_id'       => 'required|numeric',
-                'manu_id'        => 'required|numeric',
-                'color_id'       => 'sometimes|nullable|numeric',
-                'size_id'        => 'sometimes|nullable|numeric',
-                'size'           => 'sometimes|nullable',
-                'currency_id'    => 'sometimes|nullable|numeric',
-                'price'          => 'required|numeric',
-                'stock'          => 'required|numeric',
-                'start_at'       => 'required|date',
-                'end_at'         => 'required|date',
+                'title' => 'required',
+                'content' => 'required',
+                'department_id' => 'required|numeric',
+                'trade_id' => 'required|numeric',
+                'manu_id' => 'required|numeric',
+                'color_id' => 'sometimes|nullable|numeric',
+                'size_id' => 'sometimes|nullable|numeric',
+                'size' => 'sometimes|nullable',
+                'currency_id' => 'sometimes|nullable|numeric',
+                'price' => 'required|numeric',
+                'stock' => 'required|numeric',
+                'start_at' => 'required|date',
+                'end_at' => 'required|date',
                 'start_offer_at' => 'sometimes|nullable|date',
-                'end_offer_at'   => 'sometimes|nullable|date',
-                'price_offer'    => 'sometimes|nullable|numeric',
-                'weight'         => 'sometimes|nullable',
-                'weight_id'      => 'sometimes|nullable|numeric',
-                'status'         => 'sometimes|nullable|in:pending,refused,active',
-                'reason'         => 'sometimes|nullable|numeric',
+                'end_offer_at' => 'sometimes|nullable|date',
+                'price_offer' => 'sometimes|nullable|numeric',
+                'weight' => 'sometimes|nullable',
+                'weight_id' => 'sometimes|nullable|numeric',
+                'status' => 'sometimes|nullable|in:pending,refused,active',
+                'reason' => 'sometimes|nullable|numeric',
             ], [], [
-                'title'          => trans('admin.title'),
-                'content'        => trans('admin.content'),
-                'department_id'  => trans('admin.department_id'),
-                'trade_id'       => trans('admin.trade_id'),
-                'manu_id'        => trans('admin.manu_id'),
-                'color_id'       => trans('admin.color_id'),
-                'size_id'        => trans('admin.size_id'),
-                'size'           => trans('admin.size'),
-                'currency_id'    => trans('admin.currency_id'),
-                'price'          => trans('admin.price'),
-                'stock'          => trans('admin.stock'),
-                'start_at'       => trans('admin.start_at'),
-                'end_at'         => trans('admin.end_at'),
+                'title' => trans('admin.title'),
+                'content' => trans('admin.content'),
+                'department_id' => trans('admin.department_id'),
+                'trade_id' => trans('admin.trade_id'),
+                'manu_id' => trans('admin.manu_id'),
+                'color_id' => trans('admin.color_id'),
+                'size_id' => trans('admin.size_id'),
+                'size' => trans('admin.size'),
+                'currency_id' => trans('admin.currency_id'),
+                'price' => trans('admin.price'),
+                'stock' => trans('admin.stock'),
+                'start_at' => trans('admin.start_at'),
+                'end_at' => trans('admin.end_at'),
                 'start_offer_at' => trans('admin.start_offer_at'),
-                'end_offer_at'   => trans('admin.end_offer_at'),
-                'price_offer'    => trans('admin.price_offer'),
-                'weight'         => trans('admin.weight'),
-                'weight_id'      => trans('admin.weight_id'),
-                'status'         => trans('admin.status'),
-                'reason'         => trans('admin.reason'),
-            ]);*/
+                'end_offer_at' => trans('admin.end_offer_at'),
+                'price_offer' => trans('admin.price_offer'),
+                'weight' => trans('admin.weight'),
+                'weight_id' => trans('admin.weight_id'),
+                'status' => trans('admin.status'),
+                'reason' => trans('admin.reason'),
+            ]);
 
-        /*if (request()                         ->has('mall')) {
+        /*if (request()->has('mall')) {
             MallProduct::where('product_id', $id)->delete();
             foreach (request('mall') as $mall) {
                 MallProduct::create([
-                        'product_id' => $id,
-                        'mall_id'    => $mall,
-                    ]);
+                    'product_id' => $id,
+                    'mall_id' => $mall,
+                ]);
             }
         }
 
-        if (request()                            ->has('related')) {
+        if (request()->has('related')) {
             RelatedProudct::where('product_id', $id)->delete();
             foreach (request('related') as $related) {
                 RelatedProudct::create([
-                        'product_id'      => $id,
-                        'related_product' => $related,
-                    ]);
+                    'product_id' => $id,
+                    'related_product' => $related,
+                ]);
             }
         }
         if (request()->has('input_value') && request()->has('input_key')) {
-            $i          = 0;
+            $i = 0;
             $other_data = '';
             OtherData::where('product_id', $id)->delete();
             foreach (request('input_key') as $key) {
-                $data_value = !empty(request('input_value')[$i])?request('input_value')[$i]:'';
+                $data_value = !empty(request('input_value')[$i]) ? request('input_value')[$i] : '';
                 OtherData::create([
-                        'product_id' => $id,
-                        'data_key'   => $key,
-                        'data_value' => $data_value,
-                    ]);
+                    'product_id' => $id,
+                    'data_key' => $key,
+                    'data_value' => $data_value,
+                ]);
                 $i++;
             }
             $data['other_data'] = rtrim($other_data, '|');
-        }
+        }*/
         Product::where('id', $id)->update($data);
-        return response(['status' => true, 'message' => trans('admin.updated_record')], 200);*/
+        return response(['status' => true, 'message' => trans('admin.updated_record')], 200);
 
     }
 

@@ -15,27 +15,27 @@
                         type: 'post',
                         data: {_token: '{{ csrf_token() }}'},
                         beforeSend: function () {
-                            $('.loading_copy').removeClass('hidden');
+                            $('.loading_copy').removeClass('d-none');
                             $('.validate_message').html('');
-                            $('.error_message').addClass('hidden');
-                            $('.success_message').html('').addClass('hidden');
+                            $('.error_message').addClass('d-none');
+                            $('.success_message').html('').addClass('d-none');
 
                         }, success: function (data) {
                             if (data.status == true) {
-                                $('.loading_copy').addClass('hidden');
-                                $('.success_message').html('<h1>' + data.message + '</h1>').removeClass('hidden');
+                                $('.loading_copy').addClass('d-none');
+                                $('.success_message').html('<h1>' + data.message + '</h1>').removeClass('d-none');
                                 setTimeout(function () {
                                     window.location.href = '{{ aurl('products') }}/' + data.id + '/edit';
                                 }, 5000);
                             }
                         }, error(response) {
-                            $('.loading_copy').addClass('hidden');
+                            $('.loading_copy').addClass('d-none');
                             var error_li = '';
                             $.each(response.responseJSON.errors, function (index, value) {
                                 error_li += '<li>' + value + '</li>';
                             });
                             $('.validate_message').html(error_li);
-                            $('.error_message').removeClass('hidden');
+                            $('.error_message').removeClass('d-none');
                         }
                     });
                     return false;
@@ -49,24 +49,24 @@
                         type: 'post',
                         data: form_data,
                         beforeSend: function () {
-                            $('.loading_save_c').removeClass('hidden');
+                            $('.loading_save_c').removeClass('d-none');
                             $('.validate_message').html('');
-                            $('.error_message').addClass('hidden');
-                            $('.success_message').html('').addClass('hidden');
+                            $('.error_message').addClass('d-none');
+                            $('.success_message').html('').addClass('d-none');
 
                         }, success: function (data) {
                             if (data.status == true) {
-                                $('.loading_save_c').addClass('hidden');
-                                $('.success_message').html('<h1>' + data.message + '</h1>').removeClass('hidden');
+                                $('.loading_save_c').addClass('d-none');
+                                $('.success_message').html('<h1>' + data.message + '</h1>').removeClass('d-none');
                             }
                         }, error(response) {
-                            $('.loading_save_c').addClass('hidden');
+                            $('.loading_save_c').addClass('d-none');
                             var error_li = '';
                             $.each(response.responseJSON.errors, function (index, value) {
                                 error_li += '<li>' + value + '</li>';
                             });
                             $('.validate_message').html(error_li);
-                            $('.error_message').removeClass('hidden');
+                            $('.error_message').removeClass('d-none');
                         }
                     });
                     return false;
@@ -88,21 +88,21 @@
             <a href="#" class="btn btn-primary save">{{ trans('admin.save') }} <i class="fa fa-floppy-o"></i></a>
             <a href="#" class="btn btn-success save_and_continue">{{ trans('admin.save_and_continue') }} <i
                     class="fa fa-floppy-o"></i>
-                <i class="fa fa-spin fa-spinner loading_save_c hidden"></i>
+                <i class="fa fa-spin fa-spinner loading_save_c d-none"></i>
             </a>
             <a href="#" class="btn btn-info copy_product">{{ trans('admin.copy_product') }}
-                <i class="fa fa-spin fa-spinner loading_copy hidden"></i>
+                <i class="fa fa-spin fa-spinner loading_copy d-none"></i>
                 <i class="fa fa-copy"></i> </a>
             <a href="#" class="btn btn-danger delete" data-toggle="modal"
                data-target="#del_admin{{ $product->id }}">{{ trans('admin.delete') }} <i class="fa fa-trash"></i></a>
             <hr/>
-            <div class="alert alert-danger error_message hidden">
+            <div class="alert alert-danger error_message d-none">
                 <ul class="validate_message">
 
                 </ul>
             </div>
 
-            <div class="alert alert-success success_message hidden"></div>
+            <div class="alert alert-success success_message d-none"></div>
             <hr/>
 
             <ul class="nav nav-tabs">
@@ -140,7 +140,7 @@
             <a href="#" class="btn btn-success save_and_continue">{{ trans('admin.save_and_continue') }} <i
                     class="fa fa-floppy-o"></i></a>
             <a href="#" class="btn btn-info copy_product">{{ trans('admin.copy_product') }}
-                <i class="fa fa-spin fa-spinner loading_copy hidden"></i>
+                <i class="fa fa-spin fa-spinner loading_copy d-none"></i>
                 <i class="fa fa-copy"></i> </a>
             <a href="#" class="btn btn-danger delete" data-toggle="modal"
                data-target="#del_admin{{ $product->id }}">{{ trans('admin.delete') }} <i class="fa fa-trash"></i></a>
