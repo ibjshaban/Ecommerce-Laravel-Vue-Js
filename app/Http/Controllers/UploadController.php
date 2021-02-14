@@ -7,7 +7,20 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
-    public function delete($id) {
+    public function delete_files($product_id)
+    {
+        $files = File::where('file_type', 'product')->where('relation_id', $product_id)->get();
+        if (count($files) > 0) {
+            foreach ($files as $file) {
+                $this->delete($file->id);
+                Storage::deleteDirectory($file->path);
+            }
+
+        }
+    }
+
+    public function delete($id)
+    {
         $file = File::find($id);
         if (!empty($file)) {
             Storage::delete($file->full_file);

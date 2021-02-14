@@ -30,7 +30,7 @@ class ProductsDatatable extends DataTable
    /**
     * Get query source of dataTable.
     *
-    * @param \App\User $model
+    * @param \App\Product $model
     * @return \Illuminate\Database\Eloquent\Builder
     */
    public function query()
@@ -61,7 +61,7 @@ class ProductsDatatable extends DataTable
                ['extend' => 'print', 'className' => 'btn btn-primary', 'text' => '<i class="fa fa-print"></i>'],
                ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_csv')],
                ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_excel')],
-               ['extend' => 'reload', 'className' => 'btn btn-default', 'text' => '<i class="fa fa-refresh"></i>'],
+               ['extend' => 'reload', 'className' => 'btn btn-default', 'text' => '<i class="fa fa-sync-alt"></i>'],
                [
                   'text' => '<i class="fa fa-trash"></i>', 'className' => 'btn btn-danger delBtn'],
 

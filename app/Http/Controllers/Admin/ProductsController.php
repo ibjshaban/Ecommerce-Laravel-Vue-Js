@@ -11,8 +11,6 @@ use App\Size;
 use App\Weight;
 use Storage;
 
-//use App\MallProduct;
-//use App\OtherData;
 //use App\RelatedProudct;
 
 class ProductsController extends Controller
@@ -331,10 +329,10 @@ class ProductsController extends Controller
             }
         }*/
 
-    /*public function deleteProduct($id) {
+    public function deleteProduct($id) {
         $products = Product::find($id);
         !empty($products->photo)?Storage::delete($products->photo):'';
-        up()->delete_files($id);
+        upload()->delete_files($id);
         $products->delete();
 
     }
@@ -357,7 +355,7 @@ class ProductsController extends Controller
         return redirect(aurl('products'));
     }
 
-    public function product_search() {
+    /*public function product_search() {
         if (request()->ajax()) {
 
             if (!empty(request('search')) && request()->has('search')) {
