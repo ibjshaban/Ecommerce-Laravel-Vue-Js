@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ProductsDatatable;
+use App\File as FileTbl;
 use App\Http\Controllers\Controller;
 use App\MallProduct;
 use App\OtherData;
@@ -269,7 +270,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /*	public function copy_product($id) {
+    	public function copy_product($id) {
             if (request()->ajax()) {
                 $releation_data = Product::find($id);
                 $copy           = Product::find($id)->toArray();
@@ -327,7 +328,7 @@ class ProductsController extends Controller
             } else {
                 return redirect(aurl('/'));
             }
-        }*/
+        }
 
     public function deleteProduct($id) {
         $products = Product::find($id);

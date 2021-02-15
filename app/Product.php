@@ -36,7 +36,7 @@ class Product extends Model {
 	}*/
 
 	public function mall_product() {
-		return $this->hasMany(\App\Mall::class , 'product_id', 'id');
+		return $this->hasMany(\App\MallProduct::class , 'product_id', 'id');
 	}
 
 	public function other_data() {
