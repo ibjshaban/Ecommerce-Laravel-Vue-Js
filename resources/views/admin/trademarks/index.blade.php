@@ -18,7 +18,7 @@
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<div id="mutlipleDelete" class="modal fade" role="dialog">
+<div id="multipleDelete" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">

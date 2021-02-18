@@ -138,7 +138,7 @@ class TradeMarksController extends Controller
         return redirect(aurl('trademarks'));
     }
 
-    public function multi_delete()
+   /* public function multi_delete()
     {
         if (is_array(request('item'))) {
             foreach (request('item') as $id) {
@@ -153,5 +153,5 @@ class TradeMarksController extends Controller
         }
         session()->flash('success', trans('admin.deleted_record'));
         return redirect(aurl('trademarks'));
-    }
+    }*/
 }

@@ -1,3 +1,6 @@
+/*$(document).on('click','.delBtn',function (){
+  alert('hello');
+});*/
 function check_all() {
   // item_checkbox
   $('input[class="item_checkbox"]:checkbox').each(function () {

@@ -31,9 +31,9 @@ class Product extends Model {
 		'reason',
 	];
 
-	/*public function related() {
+	public function related() {
 		return $this->hasMany(\App\RelatedProudct::class , 'product_id', 'id');
-	}*/
+	}
 
 	public function mall_product() {
 		return $this->hasMany(\App\MallProduct::class , 'product_id', 'id');

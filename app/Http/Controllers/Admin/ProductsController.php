@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\MallProduct;
 use App\OtherData;
 use App\Product;
+use App\RelatedProudct;
 use App\Size;
 use App\Weight;
 use Storage;
@@ -234,7 +235,7 @@ class ProductsController extends Controller
             }
         }
 
-        /*if (request()->has('related')) {
+        if (request()->has('related')) {
             RelatedProudct::where('product_id', $id)->delete();
             foreach (request('related') as $related) {
                 RelatedProudct::create([
@@ -242,7 +243,7 @@ class ProductsController extends Controller
                     'related_product' => $related,
                 ]);
             }
-        }*/
+        }
         if (request()->has('input_value') && request()->has('input_key')) {
             $i = 0;
             $other_data = '';
@@ -270,81 +271,86 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    	public function copy_product($id) {
-            if (request()->ajax()) {
-                $releation_data = Product::find($id);
-                $copy           = Product::find($id)->toArray();
-                unset($copy['id']);
-                $create = Product::create($copy);
-                if (!empty($copy['photo'])) {
-                    $ext      = \File::extension($copy['photo']);
-                    $new_path = 'products/'.$create->id.'/'.str_random(30).'.'.$ext;
-                    \Storage::copy($copy['photo'], $new_path);
-                    $create->photo = $new_path;
-                    $create->save();
-                }
-
-                // Mall Product //
-                foreach ($releation_data->mall_product()->get() as $mall) {
-                    MallProduct::create([
-                            'product_id' => $create->id,
-                            'mall_id'    => $mall->mall_id,
-                        ]);
-                }
-                // Mall Product //
-
-                // Other Data k=>v Product //
-                foreach ($releation_data->other_data()->get() as $otherdata) {
-                    OtherData::create([
-                            'product_id' => $create->id,
-                            'data_key'   => $otherdata->data_key,
-                            'data_value' => $otherdata->data_value,
-                        ]);
-                }
-                // Other Data k=>v Product //
-
-                foreach ($releation_data->files()->get() as $file) {
-                    $hashname = str_random(30);
-                    $ext      = \File::extension($file->full_file);
-                    $new_path = 'products/'.$create->id.'/'.$hashname.'.'.$ext;
-                    \Storage::copy($file->full_file, $new_path);
-                    $add = FileTbl::create([
-                            'name'        => $file->name,
-                            'size'        => $file->size,
-                            'file'        => $hashname,
-                            'path'        => 'products/'.$create->id,
-                            'full_file'   => 'products/'.$create->id.'/'.$hashname.'.'.$ext,
-                            'mime_type'   => $file->mime_type,
-                            'file_type'   => 'product',
-                            'relation_id' => $create->id,
-                        ]);
-                }
-
-                return response([
-                        'status'  => true,
-                        'message' => trans('admin.product_created'),
-                        'id'      => $create->id,
-                    ], 200);
-            } else {
-                return redirect(aurl('/'));
+    public function copy_product($id)
+    {
+        if (request()->ajax()) {
+            $releation_data = Product::find($id);
+            $copy = Product::find($id)->toArray();
+            unset($copy['id']);
+            $create = Product::create($copy);
+            if (!empty($copy['photo'])) {
+                $ext = \File::extension($copy['photo']);
+                $new_path = 'products/' . $create->id . '/' . str_random(30) . '.' . $ext;
+                \Storage::copy($copy['photo'], $new_path);
+                $create->photo = $new_path;
+                $create->save();
             }
+
+            // Mall Product //
+            foreach ($releation_data->mall_product()->get() as $mall) {
+                MallProduct::create([
+                    'product_id' => $create->id,
+                    'mall_id' => $mall->mall_id,
+                ]);
+            }
+            // Mall Product //
+
+            // Other Data k=>v Product //
+            foreach ($releation_data->other_data()->get() as $otherdata) {
+                OtherData::create([
+                    'product_id' => $create->id,
+                    'data_key' => $otherdata->data_key,
+                    'data_value' => $otherdata->data_value,
+                ]);
+            }
+            // Other Data k=>v Product //
+
+            foreach ($releation_data->files()->get() as $file) {
+                $hashname = str_random(30);
+                $ext = \File::extension($file->full_file);
+                $new_path = 'products/' . $create->id . '/' . $hashname . '.' . $ext;
+                \Storage::copy($file->full_file, $new_path);
+                $add = FileTbl::create([
+                    'name' => $file->name,
+                    'size' => $file->size,
+                    'file' => $hashname,
+                    'path' => 'products/' . $create->id,
+                    'full_file' => 'products/' . $create->id . '/' . $hashname . '.' . $ext,
+                    'mime_type' => $file->mime_type,
+                    'file_type' => 'product',
+                    'relation_id' => $create->id,
+                ]);
+            }
+
+            return response([
+                'status' => true,
+                'message' => trans('admin.product_created'),
+                'id' => $create->id,
+            ], 200);
+        } else {
+            return redirect(aurl('/'));
         }
-
-    public function deleteProduct($id) {
-        $products = Product::find($id);
-        !empty($products->photo)?Storage::delete($products->photo):'';
-        upload()->delete_files($id);
-        $products->delete();
-
     }
-    public function destroy($id) {
+
+    public function destroy($id)
+    {
         //return $id;
         $this->deleteProduct($id);
         session()->flash('success', trans('admin.deleted_record'));
         return redirect(aurl('products'));
     }
 
-    public function multi_delete() {
+    public function deleteProduct($id)
+    {
+        $products = Product::find($id);
+        !empty($products->photo) ? Storage::delete($products->photo) : '';
+        upload()->delete_files($id);
+        $products->delete();
+
+    }
+
+    public function multi_delete()
+    {
         if (is_array(request('item'))) {
             foreach (request('item') as $id) {
                 $this->deleteProduct($id);
@@ -356,7 +362,8 @@ class ProductsController extends Controller
         return redirect(aurl('products'));
     }
 
-    /*public function product_search() {
+    public function product_search()
+    {
         if (request()->ajax()) {
 
             if (!empty(request('search')) && request()->has('search')) {
@@ -364,7 +371,7 @@ class ProductsController extends Controller
                 $related_product = RelatedProudct::where('product_id', request('id'))
                     ->get(['related_product']);
 
-                $products = Product::where('title', 'LIKE', '%'.request('search').'%')
+                $products = Product::where('title', 'LIKE', '%' . request('search') . '%')
                     ->where('id', '!=', request('id'))
                     ->whereNotIn('id', $related_product)
                     ->limit(10)
@@ -372,10 +379,10 @@ class ProductsController extends Controller
                     ->get();
 
                 return response(['status' => true,
-                        'result'                => count($products) > 0?$products:'',
-                        'count'                 => count($products),
-                    ], 200);
+                    'result' => count($products) > 0 ? $products : '',
+                    'count' => count($products),
+                ], 200);
             }
         }
-    }*/
+    }
 }

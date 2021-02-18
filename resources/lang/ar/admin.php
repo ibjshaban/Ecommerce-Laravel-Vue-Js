@@ -110,7 +110,7 @@ return [
     'sizes' => 'المقاسات',
     'is_public' => 'مقاس عام',
     'products' => 'المنتجات',
-    'weights' => 'الاحجام',
+    'weights' => 'الأوزان',
     'currency' => 'العملة',
     'product_info' => 'معلومات المنتج',
     'product_setting' => 'اعدادات المنتج',

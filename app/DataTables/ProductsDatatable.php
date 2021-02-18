@@ -62,8 +62,10 @@ class ProductsDatatable extends DataTable
                ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_csv')],
                ['extend' => 'excel', 'className' => 'btn btn-success', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_excel')],
                ['extend' => 'reload', 'className' => 'btn btn-default', 'text' => '<i class="fa fa-sync-alt"></i>'],
-               [
-                  'text' => '<i class="fa fa-trash"></i>', 'className' => 'btn btn-danger delBtn'],
+                [
+                    'text' => '<i class="fa fa-trash"></i>',
+                    'className' => 'btn btn-danger delBtn',
+                ],
 
             ],
             'initComplete' => " function () {

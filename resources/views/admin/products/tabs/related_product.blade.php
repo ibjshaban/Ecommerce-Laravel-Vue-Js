@@ -1,4 +1,3 @@
-{{--
 @push('js')
 <script type="text/javascript">
 $(document).ready(function(){
@@ -11,7 +10,7 @@ $(document).ready(function(){
 				type:'post',
 				data:{_token:'{{ csrf_token() }}',search:search,id:'{{ $product->id }}'},
 				beforeSend: function(){
-					$('.loading_data').removeClass('hidden');
+					$('.loading_data').removeClass('d-none');
 				},
 				success: function(data){
 					if(data.status == true){
@@ -24,7 +23,7 @@ $(document).ready(function(){
 							});
 							$('.itmes').html(itmes);
 						}
-						$('.loading_data').addClass('hidden');
+						$('.loading_data').addClass('d-none');
 					}
 				},error: function(data){
 
@@ -42,7 +41,7 @@ $(document).ready(function(){
 		<!-- Search form -->
 		<form class="form-inline">
 
-			<i class="fa fa-spin fa-spinner fa-2x loading_data hidden" aria-hidden="true"></i>
+			<i class="fa fa-spin fa-spinner fa-2x loading_data d-none" aria-hidden="true"></i>
 			<i class="fa fa-search fa-2x do_search" aria-hidden="true"></i>
 			<input class="form-control form-control-sm search col-md-6" type="text" placeholder="Search"
 			aria-label="Search">
@@ -68,4 +67,4 @@ $(document).ready(function(){
 
 	</div>
 	<div class="clearfix"></div>
-</div>--}}
+</div>
