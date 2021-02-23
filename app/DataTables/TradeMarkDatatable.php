@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\TradeMark;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class TradeMarkDatatable extends DataTable

@@ -29,10 +29,10 @@
       <div class="modal-body">
 
         <div class="alert alert-danger">
-        	<div class="empty_record hidden">
+        	<div class="empty_record d-none">
         	<h4>{{ trans('admin.please_check_some_records') }} </h4>
         	</div>
-        	<div class="not_empty_record hidden">
+        	<div class="not_empty_record d-none">
         	<h4>{{ trans('admin.ask_delete_itme') }} <span class="record_count"></span> ? </h4>
         	</div>
         </div>
