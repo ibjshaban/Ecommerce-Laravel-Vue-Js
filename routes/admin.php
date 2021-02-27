@@ -8,7 +8,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('forgot/password', 'AdminAuthController@forgot_password_post');
     Route::get('reset/password/{token}', 'AdminAuthController@reset_password');
     Route::post('reset/password/{token}', 'AdminAuthController@reset_password_final');
+
     Route::group(['middleware' => 'admin:admin'], function () {
+
         Route::resource('admin', 'AdminController');
         Route::delete('admin/destroy/all', 'AdminController@multi_delete');
 
@@ -56,8 +58,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('update/image/{pid}', 'ProductsController@update_product_image');
         Route::post('delete/product/image/{pid}', 'ProductsController@delete_main_image');
         Route::post('load/wight/size', 'ProductsController@prepare_weight_size');
-
-
 
         Route::get('/', function () {
             return view('admin.home');

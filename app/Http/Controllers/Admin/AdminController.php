@@ -6,6 +6,7 @@ use App\Admin;
 use App\DataTables\AdminDatatable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -16,6 +17,8 @@ class AdminController extends Controller
      */
     public function index(AdminDatatable $admin)
     {
+        /*$authAdmin = auth()->guard('admin')->user();
+        session(['authAdmin' => $authAdmin]);*/
         return $admin->render('admin.admins.index', ['title' => trans('admin.adminPanel')]);
     }
 
@@ -41,14 +44,26 @@ class AdminController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:admins',
-                'password' => 'required|min:6'
+                'password' => 'required|min:6',
+                'avatar' => 'required|'.validate_image(),
             ], [], [
                 'name' => trans('admin.name'),
                 'email' => trans('admin.email'),
-                'password' => trans('admin.password')
+                'password' => trans('admin.password'),
+                'avatar' => trans('admin.avatar'),
             ]
         );
         $data['password'] = bcrypt(request('password'));
+
+        if (request()->hasFile('avatar')) {
+            $data['avatar'] = upload()->upload([
+                'file' => 'avatar',
+                'path' => 'public/avatar',
+                'upload_type' => 'single',
+                'delete_file' => '',
+            ]);
+        }
+
         Admin::create($data);
         session()->flash('success', trans('admin.record_added'));
         return redirect(aurl('admin'));
@@ -62,7 +77,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = Admin::find($id);
+        return view('admin.admins.show', compact('admin'));
     }
 
     /**
@@ -91,16 +107,28 @@ class AdminController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:admins,email,' . $id,
-                'password' => 'sometimes|nullable|min:6'
+                'password' => 'sometimes|nullable|min:6',
+                'avatar' => 'sometimes|nullable|'.validate_image(),
             ], [], [
                 'name' => trans('admin.name'),
                 'email' => trans('admin.email'),
-                'password' => trans('admin.password')
+                'password' => trans('admin.password'),
+                'avatar' => trans('admin.avatar'),
             ]
         );
         if (request()->has('password')) {
             $data['password'] = bcrypt(request('password'));
         }
+
+        if (request()->hasFile('avatar')) {
+            $data['avatar'] = upload()->upload([
+                'file' => 'avatar',
+                'path' => 'public/avatar',
+                'upload_type' => 'single',
+                'delete_file' => Admin::find($id)->avatar,
+            ]);
+        }
+
         Admin::where('id', $id)->update($data);
         session()->flash('success', trans('admin.updated_record'));
         return redirect(aurl('admin'));

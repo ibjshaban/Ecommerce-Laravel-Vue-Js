@@ -67,7 +67,7 @@ class MallsController extends Controller {
         if (request()->hasFile('icon')) {
             $data['icon'] = upload()->upload([
                 'file'        => 'icon',
-                'path'        => 'malls',
+                'path'        => 'public/malls',
                 'upload_type' => 'single',
                 'delete_file' => '',
             ]);
@@ -143,7 +143,7 @@ class MallsController extends Controller {
         if (request()->hasFile('icon')) {
             $data['icon'] = upload()->upload([
                 'file'        => 'icon',
-                'path'        => 'malls',
+                'path'        => 'public/malls',
                 'upload_type' => 'single',
                 'delete_file' => Mall::find($id)->icon,
             ]);

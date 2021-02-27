@@ -8,7 +8,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            {!! Form::open(['route' => ['admin.store']]) !!}
+            {!! Form::open(['route' => ['admin.store'], 'files'=>true]) !!}
             <div class="form-group">
                 {!! Form::label('name',trans('admin.name')) !!}
                 {!! Form::text('name',old('name'),['class'=>'form-control']) !!}
@@ -20,6 +20,10 @@
             <div class="form-group">
                 {!! Form::label('password',trans('admin.password')) !!}
                 {!! Form::password('password',['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('avatar',trans('admin.avatar')) !!}
+                {!! Form::file('avatar',['class'=>'form-control']) !!}
             </div>
             {!! Form::submit(trans('admin.create_admin'),['class'=>'btn btn-primary']) !!}
             {!! Form::close() !!}

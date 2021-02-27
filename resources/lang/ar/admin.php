@@ -151,6 +151,8 @@ return [
     'content' => 'تفاصيل المنتج',
     'product_created' => 'تم نسخ المنتج بنجاح سيتم تحويلك الان برجاء الانتظار',
     'related_product' => 'منتجات ذات صلة',
+    'updateData' => 'تحديث البيانات',
+    'showData' => ' عرض البيانات',
     //'pending', 'refused', 'active'
 
 ];

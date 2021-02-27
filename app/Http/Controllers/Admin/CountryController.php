@@ -57,7 +57,7 @@ class CountryController extends Controller
         if (request()->hasFile('logo')) {
             $data['logo'] = upload()->upload([
                 'file' => 'logo',
-                'path' => 'countries',
+                'path' => 'public/countries',
                 'upload_type' => 'single',
                 'delete_file' => '',
             ]);
@@ -118,10 +118,10 @@ class CountryController extends Controller
         );
         if (request()->hasFile('logo')) {
             $data['logo'] = upload()->upload([
-                'file' => 'icon',
-                'path' => 'countries',
+                'file' => 'logo',
+                'path' => 'public/countries',
                 'upload_type' => 'single',
-                'delete_file' => Country::finde($id)->logo,
+                'delete_file' => Country::find($id)->logo,
             ]);
         }
         Country::where('id', $id)->update($data);

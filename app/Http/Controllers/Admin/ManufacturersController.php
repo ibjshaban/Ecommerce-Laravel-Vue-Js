@@ -65,7 +65,7 @@ class ManufacturersController extends Controller {
 		if (request()->hasFile('icon')) {
 			$data['icon'] = upload()->upload([
 					'file'        => 'icon',
-					'path'        => 'manufacturers',
+					'path'        => 'public/manufacturers',
 					'upload_type' => 'single',
 					'delete_file' => '',
 				]);
@@ -139,7 +139,7 @@ class ManufacturersController extends Controller {
 		if (request()->hasFile('icon')) {
 			$data['icon'] = upload()->upload([
 					'file'        => 'icon',
-					'path'        => 'manufacturers',
+					'path'        => 'public/manufacturers',
 					'upload_type' => 'single',
 					'delete_file' => Manufacturers::find($id)->icon,
 				]);
