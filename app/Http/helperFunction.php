@@ -95,6 +95,12 @@ if (!function_exists('admin')) {
         return auth()->guard('admin');
     }
 }
+if (!function_exists('user')) {
+    function user()
+    {
+        return auth()->guard('member');
+    }
+}
 
 if (!function_exists('active_menu')) {
     function active_menu($link)

@@ -2,37 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\AdminResetPassword;
+use App\Users;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-class AdminAuthController extends Controller
+class UserAuthController extends Controller
 {
     public function login()
     {
-        return view('admin.login');
+        return view('admin.usersLogin');
     }
 
     public function doLogin()
     {
         $rememberMe = request('rememberMe') == 1 ? true : false;
-        if (Auth::guard('admin')->
+        if (Auth::guard('member')->
         attempt(['email' => request('email'), 'password' => request('password')], $rememberMe)) {
             return redirect('admin');
-        }else {
+        } else {
             return back()->with('status', trans('admin.incorrect_information_login'));
-            //session()->flash('error', trans('admin.incorrect_information_login'));
+    //            session()->flash('error', trans('admin.incorrect_information_login'));
         }
     }
 
     public function logout()
     {
-        auth()->guard('admin')->logout();
-        return redirect('admin/login');
+        auth()->guard('member')->logout();
+        return redirect('admin/login-users');
     }
 
     public function forgot_password()
@@ -42,7 +42,7 @@ class AdminAuthController extends Controller
 
     public function forgot_password_post()
     {
-        $admin = Admin::where('email', request('email'))->first();
+        $admin = Users::where('email', request('email'))->first();
         if (!empty($admin)) {
             $token = app('auth.password.broker')->createToken($admin);
             $data = DB::table('password_resets')->insert([
@@ -80,7 +80,7 @@ class AdminAuthController extends Controller
         $check_token = DB::table('password_resets')->where('token', $token)
             ->where('created_at', '>', Carbon::now()->subHours(2))->first();
         if (!empty($check_token)) {
-            $admin = Admin::where('email', $check_token->email)->
+            $admin = Users::where('email', $check_token->email)->
             update([
                 'email' => $check_token->email,
                 'password' => bcrypt(request('password'))

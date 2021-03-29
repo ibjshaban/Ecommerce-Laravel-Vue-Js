@@ -1,9 +1,9 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    @include('admin.layouts.menu')
+@include('admin.layouts.menu')
 
-    <!-- SEARCH FORM -->
+<!-- SEARCH FORM -->
     <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -27,7 +27,14 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ Storage::url(admin()->user()->avatar) }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        @if(admin()->check())
+                            <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @elseif(user()->check())
+                            <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @endif
+
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
@@ -43,7 +50,14 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ Storage::url(admin()->user()->avatar) }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                        @if(admin()->check())
+                            <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @elseif(user()->check())
+                            <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @endif
+
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 John Pierce
@@ -59,7 +73,14 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ Storage::url(admin()->user()->avatar) }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                        @if(admin()->check())
+                            <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @elseif(user()->check())
+                            <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @endif
+
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Nora Silvester
@@ -121,28 +142,57 @@
         </li>
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ Storage::url(admin()->user()->avatar) }}" class="user-image" alt="User Image">
-                <span class="hidden-xs">{{ admin()->user()->name }}</span>
+                @if(admin()->check())
+                    <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                         class="img-size-50 mr-3 img-circle">
+                    <span class="d-none-xs">{{ admin()->user()->name }}</span>
+                @elseif(user()->check())
+                    <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                         class="img-size-50 mr-3 img-circle">
+                    <span class="d-none-xs">{{ user()->user()->name }}</span>
+                @endif
+
+
             </a>
             <ul class="dropdown-menu">
-                <!-- User image -->
+                <!-- AdminOrSeller image -->
                 <li class="user-header">
-                    @if(!empty(admin()->user()->avatar))
-                        <img src="{{ Storage::url(admin()->user()->avatar) }}" class="img-circle" alt="User Image">
+                    @if(admin()->check())
+                        <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                        <p>
+                            {{ admin()->user()->name }}
+                            <small>Member since {{ admin()->user()->created_at->toDateString() }}</small>
+                        </p>
+                    @elseif(user()->check())
+                        <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                        <p>
+                            {{ user()->user()->name }}
+                            <small>Member since {{ user()->user()->created_at->toDateString() }}</small>
+                        </p>
                     @endif
 
-                    <p>
-                        {{ admin()->user()->name }}
-                        <small>Member since {{ admin()->user()->created_at->toDateString() }}</small>
-                    </p>
+
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="float-left">
-                        <a href="{{ route('admin.show', admin()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+                        @if(admin()->check())
+                            <a href="{{ route('admin.show', admin()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+                        @elseif(user()->check())
+                            <a href="{{ route('admin.show', user()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+
+                        @endif
                     </div>
                     <div class="float-right">
-                        <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                        @if(admin()->check())
+                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+
+                        @elseif(user()->check())
+                            <a href="{{ route('logout.user') }}" class="btn btn-default btn-flat">Sign out</a>
+
+                        @endif
                     </div>
                 </li>
             </ul>
@@ -165,11 +215,21 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ Storage::url(admin()->user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
+                @if(admin()->check())
+                    <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                         class="img-size-50 mr-3 img-circle">
+                    <div class="info">
+                        <a href="#" class="d-block">{{ admin()->user()->name }}</a>
+                    </div>
+                @elseif(user()->check())
+                    <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                         class="img-size-50 mr-3 img-circle">
+                    <div class="info">
+                        <a href="#" class="d-block">{{ user()->user()->name }}</a>
+                    </div>
+                @endif
             </div>
-            <div class="info">
-                <a href="#" class="d-block">{{ admin()->user()->name }}</a>
-            </div>
+
         </div>
 
         <!-- Sidebar Menu -->
@@ -201,57 +261,63 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ active_menu('admin')[0] }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            {{ trans('admin.admin') }}
-                            <i class="left fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview {{ active_menu('admin')[1] }}">
-                        <li class="nav-item active">
-                            <a href="{{ aurl('admin') }}" class="nav-link">
-                                <i class="fa fa-users pull-right nav-icon"></i>
-                                <p>{{ trans('admin.admin') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview {{ active_menu('users')[0] }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            {{ trans('admin.users') }}
-                            <i class="left fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview {{ active_menu('users')[1] }}">
-                        <li class="nav-item active">
-                            <a href="{{ aurl('users') }}" class="nav-link">
-                                <i class="fa fa-users pull-right nav-icon"></i>
-                                <p>{{ trans('admin.users') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="{{ aurl('users') }}?level=user" class="nav-link">
-                                <i class="fa fa-users pull-right nav-icon"></i>
-                                <p>{{ trans('admin.user') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="{{ aurl('users') }}?level=vendor" class="nav-link">
-                                <i class="fa fa-users pull-right nav-icon"></i>
-                                <p>{{ trans('admin.vendor') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="{{ aurl('users') }}?level=company" class="nav-link">
-                                <i class="fa fa-users pull-right nav-icon"></i>
-                                <p>{{ trans('admin.company') }}</p>
-                            </a>
-                    </ul>
-                </li>
+                @if(admin()->check())
+                    <li class="nav-item has-treeview {{ active_menu('admin')[0] }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>
+                                {{ trans('admin.admin') }}
+                                <i class="left fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview {{ active_menu('admin')[1] }}">
+                            <li class="nav-item active">
+                                <a href="{{ aurl('admin') }}" class="nav-link">
+                                    <i class="fa fa-users pull-right nav-icon"></i>
+                                    <p>{{ trans('admin.admin') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item has-treeview {{ active_menu('users')[0] }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>
+                                {{ trans('admin.users') }}
+                                <i class="left fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview {{ active_menu('users')[1] }}">
+                            <li class="nav-item active">
+                                <a href="{{ aurl('users') }}" class="nav-link">
+                                    <i class="fa fa-users pull-right nav-icon"></i>
+                                    <p>{{ trans('admin.users') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{{ aurl('users') }}?level=user" class="nav-link">
+                                    <i class="fa fa-users pull-right nav-icon"></i>
+                                    <p>{{ trans('admin.user') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{{ aurl('users') }}?level=vendor" class="nav-link">
+                                    <i class="fa fa-users pull-right nav-icon"></i>
+                                    <p>{{ trans('admin.vendor') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{{ aurl('users') }}?level=company" class="nav-link">
+                                    <i class="fa fa-users pull-right nav-icon"></i>
+                                    <p>{{ trans('admin.company') }}</p>
+                                </a>
+                        </ul>
+                    </li>
+                @endif
+
+
 
                 <li class="nav-item has-treeview {{ active_menu('countries')[0] }}">
                     <a href="#" class="nav-link">
@@ -543,10 +609,18 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('logout') }}" class="nav-link">
-                        <i class="fas fa-sign-out-alt nav-icon"></i>
-                        <p>Logout</p>
-                    </a>
+                    @if(admin()->check())
+                        <a href="{{ route('logout') }}" class="nav-link">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <p>Logout</p>
+                        </a>
+                    @elseif(user()->check())
+                        <a href="{{ route('logout.user') }}" class="nav-link">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <p>Logout</p>
+                        </a>
+                    @endif
+
                 </li>
 
 

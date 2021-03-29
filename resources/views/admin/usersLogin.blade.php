@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ trans('admin.login') }}</title>
+  <title>{{--{{ trans('admin.login') }}--}} users login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="Design/admin/index2.html"><b>Admin</b>LTE</a>
+    <a href="Design/admin/index2.html"><b>Seller</b>LTE</a>
   </div>
   <!-- /.login-logo -->
     @if (Session::has('status'))
@@ -32,7 +32,6 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-
       <form method="post">
           @csrf
         <div class="input-group mb-3">

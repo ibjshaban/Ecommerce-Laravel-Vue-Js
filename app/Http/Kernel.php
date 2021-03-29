@@ -51,6 +51,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'AdminOrSeller' => \App\Http\Middleware\AdminOrSeller::class,
         'Lang' => \App\Http\Middleware\Lang::class,
         'Maintenance' => \App\Http\Middleware\Maintenance::class,
         'admin' => \App\Http\Middleware\Admin::class,

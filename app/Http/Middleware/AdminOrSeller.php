@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class AdminOrSeller
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,16 @@ class Admin
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        abort_if(!(auth('admin')->check() || auth('member')->check()),403);
+        return $next($request);
 
-            /*if (Auth::guard('admin')->check()) {
+//        if ($guard = 'member') {
+           /* if (Auth::guard($guard)->check()) {
                 return $next($request);
                 //return redirect('/admin');
             } else {
-                return redirect('admin/login');
+                return redirect('admin/login-users');
             }*/
-        abort_if(!(auth('admin')->check()),403);
-        return $next($request);
-
-        }
+//        }
+    }
 }
