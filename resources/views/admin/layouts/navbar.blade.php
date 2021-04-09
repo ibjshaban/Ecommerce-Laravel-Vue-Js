@@ -28,11 +28,21 @@
                     <!-- Message Start -->
                     <div class="media">
                         @if(admin()->check())
-                            <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
-                                 class="img-size-50 mr-3 img-circle">
+                            @if( Storage::url( admin()->user()->avatar)=='' )
+                                <i class="fas fa-user"></i>
+                            @else
+                                <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
                         @elseif(user()->check())
-                            <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
-                                 class="img-size-50 mr-3 img-circle">
+                            @if(Storage::url( user()->user()->avatar==''))
+                                <i class="fas fa-user"></i>
+
+                            @else
+                                <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
+
                         @endif
 
                         <div class="media-body">
@@ -50,12 +60,30 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        @if(admin()->check())
+                        {{--@if(admin()->check())
                             <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
                         @elseif(user()->check())
                             <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
+                        @endif--}}
+
+                        @if(admin()->check())
+                            @if( Storage::url( admin()->user()->avatar)=='' )
+                                <i class="fas fa-user"></i>
+                            @else
+                                <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
+                        @elseif(user()->check())
+                            @if(Storage::url( user()->user()->avatar==''))
+                                <i class="fas fa-user"></i>
+
+                            @else
+                                <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
+
                         @endif
 
                         <div class="media-body">
@@ -73,12 +101,30 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        @if(admin()->check())
+                        {{--@if(admin()->check())
                             <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
                         @elseif(user()->check())
                             <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
+                        @endif--}}
+
+                        @if(admin()->check())
+                            @if( Storage::url( admin()->user()->avatar)=='' )
+                                <i class="fas fa-user"></i>
+                            @else
+                                <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
+                        @elseif(user()->check())
+                            @if(Storage::url( user()->user()->avatar==''))
+                                <i class="fas fa-user"></i>
+
+                            @else
+                                <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                     class="img-size-50 mr-3 img-circle">
+                            @endif
+
                         @endif
 
                         <div class="media-body">
@@ -142,7 +188,7 @@
         </li>
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                @if(admin()->check())
+                {{--@if(admin()->check())
                     <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
                          class="img-size-50 mr-3 img-circle">
                     <span class="d-none-xs">{{ admin()->user()->name }}</span>
@@ -150,6 +196,24 @@
                     <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
                          class="img-size-50 mr-3 img-circle">
                     <span class="d-none-xs">{{ user()->user()->name }}</span>
+                @endif--}}
+
+                @if(admin()->check())
+                    @if( Storage::url( admin()->user()->avatar)=='' )
+                        <i class="fas fa-user"></i>
+                    @else
+                        <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                    @endif
+                @elseif(user()->check())
+                    @if(Storage::url( user()->user()->avatar==''))
+                        <i class="fas fa-user"></i>
+
+                    @else
+                        <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                    @endif
+
                 @endif
 
 
@@ -157,7 +221,7 @@
             <ul class="dropdown-menu">
                 <!-- AdminOrSeller image -->
                 <li class="user-header">
-                    @if(admin()->check())
+                    {{--@if(admin()->check())
                         <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
                              class="img-size-50 mr-3 img-circle">
                         <p>
@@ -167,6 +231,31 @@
                     @elseif(user()->check())
                         <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
                              class="img-size-50 mr-3 img-circle">
+                        <p>
+                            {{ user()->user()->name }}
+                            <small>Member since {{ user()->user()->created_at->toDateString() }}</small>
+                        </p>
+                    @endif--}}
+
+                    @if(admin()->check())
+                        @if( Storage::url( admin()->user()->avatar)=='' )
+                            <i class="fas fa-user"></i>
+                        @else
+                            <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @endif
+                        <p>
+                            {{ admin()->user()->name }}
+                            <small>Member since {{ admin()->user()->created_at->toDateString() }}</small>
+                        </p>
+                    @elseif(user()->check())
+                        @if(Storage::url( user()->user()->avatar==''))
+                            <i class="fas fa-user"></i>
+
+                        @else
+                            <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                        @endif
                         <p>
                             {{ user()->user()->name }}
                             <small>Member since {{ user()->user()->created_at->toDateString() }}</small>
@@ -181,7 +270,7 @@
                         @if(admin()->check())
                             <a href="{{ route('admin.show', admin()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
                         @elseif(user()->check())
-                            <a href="{{ route('admin.show', user()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+                            <a href="{{ route('users.show', user()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
 
                         @endif
                     </div>
@@ -215,15 +304,38 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+                {{-- @if(admin()->check())
+                     <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                          class="img-size-50 mr-3 img-circle">
+                     <div class="info">
+                         <a href="#" class="d-block">{{ admin()->user()->name }}</a>
+                     </div>
+                 @elseif(user()->check())
+                     <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                          class="img-size-50 mr-3 img-circle">
+                     <div class="info">
+                         <a href="#" class="d-block">{{ user()->user()->name }}</a>
+                     </div>
+                 @endif--}}
+
                 @if(admin()->check())
-                    <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
-                         class="img-size-50 mr-3 img-circle">
+                    @if( Storage::url( admin()->user()->avatar)=='' )
+                        <i class="fas fa-user"></i>
+                    @else
+                        <img src="{{ Storage::url( admin()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                    @endif
                     <div class="info">
                         <a href="#" class="d-block">{{ admin()->user()->name }}</a>
                     </div>
                 @elseif(user()->check())
-                    <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
-                         class="img-size-50 mr-3 img-circle">
+                    @if(Storage::url( user()->user()->avatar==''))
+                        <i class="fas fa-user"></i>
+
+                    @else
+                        <img src="{{ Storage::url( user()->user()->avatar) }}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+                    @endif
                     <div class="info">
                         <a href="#" class="d-block">{{ user()->user()->name }}</a>
                     </div>
@@ -316,7 +428,6 @@
                         </ul>
                     </li>
                 @endif
-
 
 
                 <li class="nav-item has-treeview {{ active_menu('countries')[0] }}">

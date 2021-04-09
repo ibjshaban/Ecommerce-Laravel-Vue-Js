@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Users;
 use App\DataTables\UsersDatatable;
 use App\Http\Controllers\Controller;
+use App\Users;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -16,7 +16,11 @@ class UsersController extends Controller
      */
     public function index(UsersDatatable $user)
     {
-        return $user->render('admin.users.index', ['title' => trans('admin.add')]);
+        if (auth('admin')->check()) {
+            return $user->render('admin.users.index', ['title' => trans('admin.add')]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -64,7 +68,17 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        //$user = Users::find($id);
+        //return view('admin.users.show', compact('user'));
+
+        if (auth('member')->id() == $id) {
+            // valid user
+            $user = auth('member')->user();
+            //$user = Users::find($id);
+            return view('admin.users.show', compact("user"));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -75,9 +89,20 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = Users::find($id);
-        $title = trans('admin.edit');
-        return view('admin.users.edit', compact('user', 'title'));
+        /* $user = Users::find($id);
+         $title = trans('admin.edit');
+         return view('admin.users.edit', compact('user', 'title'));*/
+
+        if (auth('member')->id() == $id) {
+            // valid user
+            $user = auth('member')->user();
+            $title = trans('admin.edit');
+            //$user = Users::find($id);
+            return view('admin.users.edit', compact('user', 'title'));
+        } else {
+            //return back()->with('error', 'You can not access here!');
+            abort(404);
+        }
     }
 
     /**
@@ -123,10 +148,11 @@ class UsersController extends Controller
         return redirect(aurl('users'));
     }
 
-    public function multi_delete(){
-        if (is_array(request('item'))){
+    public function multi_delete()
+    {
+        if (is_array(request('item'))) {
             Users::destroy(\request('item'));
-        }else{
+        } else {
             Users::find(\request('item'))->delete();
         }
         session()->flash('success', trans('admin.deleted_record'));
