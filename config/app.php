@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Basel\Paytabs\PaytabsServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -237,6 +239,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Up' => App\Http\Controllers\UploadController::class,
 
+        'Paytabs' => Basel\Paytabs\Facades\PaytabsFacade::class,
     ],
 
 ];

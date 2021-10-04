@@ -16,6 +16,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('/', function () {
         return view('style.home');
     });
+    Route::get('/paytabs_payment', 'PaytabsController@index')->name('Paytabs.index');
+    Route::post('/paytabs_response', 'PaytabsController@response')->name('Paytabs.result');
 });
 
 Route::get('maintenance', function () {
