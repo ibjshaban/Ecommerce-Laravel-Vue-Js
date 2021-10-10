@@ -240,6 +240,8 @@ return [
         'Up' => App\Http\Controllers\UploadController::class,
 
         'Paytabs' => Basel\Paytabs\Facades\PaytabsFacade::class,
+
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
 ];
